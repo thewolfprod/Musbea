@@ -10,6 +10,7 @@ import android.os.Bundle;
  *
  * THE IDEA OF THE APP IS WRITTEN AT:
  * URL
+ *
  */
 
 public class MainActivity extends AppCompatActivity {
