@@ -9,7 +9,7 @@ import android.os.Bundle;
  * 18-04-2022 01:28
  *
  * THE IDEA OF THE APP IS WRITTEN AT:
- * URL
+ * https://github.com/thewolfprod/Musbea/blob/master/README.md
  */
 
 public class MainActivity extends AppCompatActivity {
