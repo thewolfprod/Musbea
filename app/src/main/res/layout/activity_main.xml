@@ -12,13 +12,52 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="8dp">
+        android:orientation="vertical">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hello World!" />
+            android:gravity="left|center"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/title_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:layout_marginHorizontal="32dp"
+                android:text="Hello... World!"
+                android:textColor="@color/sesl4_primary_text"
+                android:textSize="28dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/separator_crdv"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_marginHorizontal="64dp"
+            android:layout_marginBottom="12dp"
+            app:cardBackgroundColor="@color/sesl4_primary_text"
+            app:cardCornerRadius="90dp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/alpha_notice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginBottom="8dp"
+            android:padding="8dp"
+            app:cardBackgroundColor="@color/primary_color"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4.0dip">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:text="This app is an Alpha Version. Errors &amp; Bugs can occurs!\nReport them in Report Bug page or send us E-Mail on thewolf.kontakt@gmail.com"
+                android:textColor="#FFF" />
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 </de.dlyt.yanndroid.oneui.layout.ToolbarLayout>
