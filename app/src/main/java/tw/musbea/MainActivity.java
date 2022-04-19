@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.animation.TimeInterpolator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -18,6 +19,8 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
+import de.dlyt.yanndroid.oneui.dialog.AlertDialog;
+import de.dlyt.yanndroid.oneui.dialog.ProgressDialog;
 import de.dlyt.yanndroid.oneui.view.Snackbar;
 import tw.musbea.account.Authentication;
 import tw.musbea.account.User;
@@ -39,13 +42,11 @@ public class MainActivity extends AppCompatActivity {
     private MaterialButton register_bttn, login_bttn, crash_bttn;
     private TextInputLayout username_til;
     private TextInputEditText email_edt, username_edt, password_edt;
+    private ProgressDialog loading;
 
     /* INTERPOLATOR FOR ANIMATIONS */
-    private TimeInterpolator interpolator = new AccelerateDecelerateInterpolator();
+    private final TimeInterpolator interpolator = new AccelerateDecelerateInterpolator();
 
-    /* VARS */
-    private int ANIMATION_DURATION = 1000;
-    private boolean isLoginRegisterWindowVisible = false;
     private boolean isRegister = true;
 
     /* AUTH */
@@ -61,40 +62,70 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void initialize() {
+        loading = new ProgressDialog(MainActivity.this);
+        loading.setProgressStyle(ProgressDialog.STYLE_CIRCLE);
+        loading.setIndeterminate(true);
+        loading.setCancelable(false);
+        loading.setCanceledOnTouchOutside(false);
+        loading.show();
+
         auth = new Authentication(MainActivity.this, new Authentication.AuthListener() {
             @Override
             public void OnUserLogin(User userData) {
-                showError("User logged in as " + userData.getUsername());
+                dismissLoading();
             }
 
             @Override
             public void OnUserAlreadyLoggedIn(User userData) {
-                showError("User already logged in! Username " + userData.getUsername());
+                dismissLoading();
+
+                if (userData.getAvatarUrl().equals("default")) {
+                    Intent intent = new Intent(MainActivity.this, AccountConfigurationActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                    finish();
+                }
             }
 
             @Override
             public void OnUserLoginError(String reason) {
+                dismissLoading();
+
                 showError(reason);
             }
 
             @Override
             public void OnUserRegister(User userData) {
-                showError("UserRegistered\nUserName " + userData.getUsername());
+                dismissLoading();
+
+                Intent intent = new Intent(MainActivity.this, AccountConfigurationActivity.class);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                finish();
             }
 
             @Override
             public void OnUserRegisterError(String error) {
+                dismissLoading();
+
                 showError(error);
             }
 
             @Override
             public void OnUserRequestData(User userData) {
-
+                dismissLoading();
             }
 
             @Override
             public void OnUserRequestDataError(String error) {
+                dismissLoading();
+
                 showError(error);
+            }
+
+            @Override
+            public void OnLoaded() {
+                dismissLoading();
             }
         });
 
@@ -116,6 +147,8 @@ public class MainActivity extends AppCompatActivity {
     void setup() {
         title_txt.setAlpha(0f);
         title_txt.setTranslationX(-180);
+        /* VARS */
+        int ANIMATION_DURATION = 1000;
         title_txt.animate().alpha(1).translationX(0f).setInterpolator(interpolator).setDuration(ANIMATION_DURATION).start();
 
         separator_crdv.setAlpha(0f);
@@ -144,31 +177,43 @@ public class MainActivity extends AppCompatActivity {
             }
             setupRegisterLinear();
         });
+    }
 
+    void showLoading() {
+        if (!loading.isShowing()) {
+            loading.show();
+        }
+    }
 
+    void dismissLoading() {
+        if (loading.isShowing()) {
+            loading.dismiss();
+        }
     }
 
     void setupLoginLinear() {
-        login_register_txt.setText("Login");
+        login_register_txt.setText(getString(R.string.login));
         username_til.setVisibility(View.GONE);
 
         if (isRegister) {
             isRegister = false;
         } else {
             if (validateInputs()) {
+                showLoading();
                 auth.login(email_edt.getText().toString(), password_edt.getText().toString());
             }
         }
     }
 
     void setupRegisterLinear() {
-        login_register_txt.setText("Register");
+        login_register_txt.setText(getString(R.string.register));
         username_til.setVisibility(View.VISIBLE);
 
         if (!isRegister) {
             isRegister = true;
         } else {
             if (validateInputs()) {
+                showLoading();
                 auth.register(email_edt.getText().toString(), password_edt.getText().toString(), username_edt.getText().toString());
             }
         }

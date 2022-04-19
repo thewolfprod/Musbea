@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Musbea</string>
 
+    <!-- MainActivity -->
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+
     <string name="database_url"></string>
     <string name="storage_url"></string>
 </resources>

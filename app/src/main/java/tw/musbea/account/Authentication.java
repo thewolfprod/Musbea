@@ -70,6 +70,10 @@ public class Authentication {
                 map.put("email", email);
                 map.put("description", DEFAULT_ACCOUNT_DESCRIPTION);
                 map.put("banReason", "empty");
+                map.put("youtubeUrl", "empty");
+                map.put("spotifyUrl", "empty");
+                map.put("soundcloudUrl", "empty");
+                map.put("twitterUrl", "empty");
                 map.put("userAge", 0);
                 map.put("isBanned", false);
                 map.put("isOnline", true);
@@ -130,6 +134,10 @@ public class Authentication {
                         userData.setDescription(document.getString("description"));
                         userData.setBanReason(document.getString("banReason"));
                         userData.setAvatarUrl(document.getString("avatarUrl"));
+                        userData.setYoutubeUrl(document.getString("youtubeUrl"));
+                        userData.setSpotifyUrl(document.getString("spotifyUrl"));
+                        userData.setSoundcloudUrl(document.getString("soundcloudUrl"));
+                        userData.setTwitterUrl(document.getString("twitterUrl"));
                         userData.setUserAge(Integer.parseInt(document.get("userAge").toString()));
                         userData.setBanned(Boolean.parseBoolean(document.get("isBanned").toString()));
                         userData.setOnline(Boolean.parseBoolean(document.get("isOnline").toString()));
@@ -168,5 +176,7 @@ public class Authentication {
         public void OnUserRequestData(User userData);
 
         public void OnUserRequestDataError(String error);
+
+        public void OnLoaded();
     }
 }

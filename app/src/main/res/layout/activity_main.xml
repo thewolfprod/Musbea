@@ -68,7 +68,7 @@
             android:layout_marginVertical="8dp"
             android:layout_marginHorizontal="32dp"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/login_register_txt"

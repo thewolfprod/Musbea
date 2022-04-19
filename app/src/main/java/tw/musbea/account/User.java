@@ -7,6 +7,10 @@ public class User {
     private String description;
     private String banReason;
     private String avatarUrl;
+    private String youtubeUrl;
+    private String spotifyUrl;
+    private String soundcloudUrl;
+    private String twitterUrl;
     private int userAge;
     private boolean isBanned;
     private boolean isOnline;
@@ -15,9 +19,45 @@ public class User {
     private long userBirthDay;
     private long accountCreatedDate;
 
-    public String getUid() {return uid;}
+    public String getYoutubeUrl() {
+        return youtubeUrl;
+    }
 
-    public void setUid(String uid) {this.uid = uid;}
+    public void setYoutubeUrl(String youtubeUrl) {
+        this.youtubeUrl = youtubeUrl;
+    }
+
+    public String getSpotifyUrl() {
+        return spotifyUrl;
+    }
+
+    public void setSpotifyUrl(String spotifyUrl) {
+        this.spotifyUrl = spotifyUrl;
+    }
+
+    public String getSoundcloudUrl() {
+        return soundcloudUrl;
+    }
+
+    public void setSoundcloudUrl(String soundcloudUrl) {
+        this.soundcloudUrl = soundcloudUrl;
+    }
+
+    public String getTwitterUrl() {
+        return twitterUrl;
+    }
+
+    public void setTwitterUrl(String twitterUrl) {
+        this.twitterUrl = twitterUrl;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
 
     public String getAvatarUrl() {
         return avatarUrl;
