@@ -1,4 +1,13 @@
-# Musbea
+<p align='center'>
+<img width='300px' height='300px' src='https://github.com/thewolfprod/Musbea/raw/master/Musbea%20Logo/Logo.png'>
+
+<div align='center'>
+<h2>Musbea</h2>
+</div>
+</p>
+
+[![stability-wip](https://img.shields.io/badge/stability-wip-lightgrey.svg)](https://github.com/mkenney/software-guides/blob/master/STABILITY-BADGES.md#work-in-progress)
+
 Social Media App for
 - Music Producers,
 - Singers,
