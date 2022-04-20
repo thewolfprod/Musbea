@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<de.dlyt.yanndroid.oneui.layout.ToolbarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbarLayoutHome"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:expandable="false"
+    app:expanded="false"
+    app:navigationIcon="@drawable/ic_oui_arrow_left"
+    app:title="Add Friend">
+
+    <de.dlyt.yanndroid.oneui.widget.RoundLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/divider_color"
+        app:roundedCorners="top_left|top_right">
+
+        <de.dlyt.yanndroid.oneui.view.RecyclerView
+            android:id="@+id/friendsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </de.dlyt.yanndroid.oneui.widget.RoundLinearLayout>
+</de.dlyt.yanndroid.oneui.layout.ToolbarLayout>

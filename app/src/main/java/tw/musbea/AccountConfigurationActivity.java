@@ -64,6 +64,7 @@ public class AccountConfigurationActivity extends AppCompatActivity {
         loading.setCanceledOnTouchOutside(false);
 
         viewPager.setAdapter(adapter);
+        viewPager.setUserInputEnabled(false);
     }
 
     void setup() {

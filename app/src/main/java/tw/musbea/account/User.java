@@ -1,5 +1,8 @@
 package tw.musbea.account;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class User {
     private String uid;
     private String username;
@@ -18,6 +21,29 @@ public class User {
     private long lastOnlineDate;
     private long userBirthDay;
     private long accountCreatedDate;
+    private List<User> friendsList;
+
+    public HashMap<String, Object> UserToMap() {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("uid", uid);
+        map.put("avatarUrl", avatarUrl);
+        map.put("username", username);
+        map.put("email", email);
+        map.put("description", description);
+        map.put("banReason", banReason);
+        map.put("youtubeUrl", youtubeUrl);
+        map.put("spotifyUrl", spotifyUrl);
+        map.put("soundcloudUrl", soundcloudUrl);
+        map.put("twitterUrl", twitterUrl);
+        map.put("userAge", userAge);
+        map.put("isBanned", isBanned);
+        map.put("isOnline", isOnline);
+        map.put("isOnlineVisible", isOnlineVisible);
+        map.put("lastOnlineDate", lastOnlineDate);
+        map.put("userBirthDay", userBirthDay);
+        map.put("userAccountCreatedDate", accountCreatedDate);
+        return map;
+    }
 
     public String getYoutubeUrl() {
         return youtubeUrl;

@@ -5,10 +5,18 @@
       <map>
         <entry key="..\:/Users/hesam/AndroidStudioProjects/Musbea/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2985" />
         <entry key="..\:/Users/hesam/AndroidStudioProjects/Musbea/app/src/main/res/drawable/stroke_rounded_login.xml" value="0.2985" />
+        <entry key="..\:/Users/hesam/AndroidStudioProjects/Musbea/app/src/main/res/layout/activity_add_friend.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/hesam/AndroidStudioProjects/Musbea/app/src/main/res/layout/activity_configuration_account.xml" value="0.25" />
+        <entry key="..\:/Users/hesam/AndroidStudioProjects/Musbea/app/src/main/res/layout/activity_home.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/hesam/AndroidStudioProjects/Musbea/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/hesam/AndroidStudioProjects/Musbea/app/src/main/res/layout/fragment_avatar.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/hesam/AndroidStudioProjects/Musbea/app/src/main/res/layout/fragment_chat.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/hesam/AndroidStudioProjects/Musbea/app/src/main/res/layout/fragment_details.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/hesam/AndroidStudioProjects/Musbea/app/src/main/res/layout/fragment_home.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/hesam/AndroidStudioProjects/Musbea/app/src/main/res/layout/fragment_profile.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/hesam/AndroidStudioProjects/Musbea/app/src/main/res/layout/home_drawer.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/hesam/AndroidStudioProjects/Musbea/app/src/main/res/layout/user_friend_list.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/hesam/AndroidStudioProjects/Musbea/app/src/main/res/menu/home_menu.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/hesam/AndroidStudioProjects/Musbea/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3425" />
         <entry key="..\:/Users/hesam/AndroidStudioProjects/Musbea/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2985" />
       </map>

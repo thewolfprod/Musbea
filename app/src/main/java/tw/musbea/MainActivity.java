@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
         loading = new ProgressDialog(MainActivity.this);
         loading.setProgressStyle(ProgressDialog.STYLE_CIRCLE);
         loading.setIndeterminate(true);
-        loading.setCancelable(false);
-        loading.setCanceledOnTouchOutside(false);
+        loading.setCancelable(true);
+        loading.setCanceledOnTouchOutside(true);
         loading.show();
 
         auth = new Authentication(MainActivity.this, new Authentication.AuthListener() {
@@ -79,12 +79,18 @@ public class MainActivity extends AppCompatActivity {
             public void OnUserAlreadyLoggedIn(User userData) {
                 dismissLoading();
 
-                if (userData.getAvatarUrl().equals("default")) {
+                /* TODO: Uncomment this on first stable release */
+                /*if (userData.getAvatarUrl().equals("default")) {
                     Intent intent = new Intent(MainActivity.this, AccountConfigurationActivity.class);
                     startActivity(intent);
                     overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     finish();
-                }
+                }*/
+
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                finish();
             }
 
             @Override

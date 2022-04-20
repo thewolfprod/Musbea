@@ -85,7 +85,17 @@ public class Authentication {
                 database.collection("users").add(map).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        getUserData(false, true, false, false);
+                        HashMap<String, Object> map = new HashMap<>();
+                        map.put("dummy", "");
+                        /* FOLLOWERS CAN SEE USER POSTS BUT CAN'T MESSAGE USER */
+                        database.collection("users").document(documentReference.getId()).collection("followers").add(map);
+                        database.collection("users").document(documentReference.getId()).collection("friendsRequest").add(map);
+                        database.collection("users").document(documentReference.getId()).collection("friends").add(map).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                getUserData(false, true, false, false);
+                            }
+                        });
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

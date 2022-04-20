@@ -1,9 +1,23 @@
 <resources>
     <string name="app_name">Musbea</string>
+    <string name="sesl_font_family_regular">sans-serif</string>
 
     <!-- MainActivity -->
     <string name="login">Login</string>
     <string name="register">Register</string>
+
+    <!-- HomeActivity -->
+    <string name="home">Home</string>
+    <string name="chat">Chat</string>
+    <string name="profile">Profile</string>
+
+    <!-- HomeActivity Drawer -->
+    <string name="show_profile">Show Profile</string>
+    <string name="create_post">Create Post</string>
+
+    <!-- HomeFragment -->
+    <string name="your_latest_posts">Your Latest Posts</string>
+    <string name="online_friends">Online Friends</string>
 
     <string name="database_url"></string>
     <string name="storage_url"></string>
