@@ -48,7 +48,7 @@ public class AddFriendActivity extends AppCompatActivity {
                 adapter = new FriendAdapter(AddFriendActivity.this, usersList);
                 friendRecyclerView.setAdapter(adapter);
             }
-        });
+        }, true);
     }
 
     void setup() {

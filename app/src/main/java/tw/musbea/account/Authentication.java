@@ -1,6 +1,8 @@
 package tw.musbea.account;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 
 import androidx.annotation.NonNull;
 
@@ -19,8 +21,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 
-public class Authentication {
+import tw.musbea.MainActivity;
 
+public class Authentication {
+    private Context context;
     private FirebaseAuth auth;
     private FirebaseUser user;
     private FirebaseFirestore database;
@@ -33,6 +37,7 @@ public class Authentication {
 
     public Authentication(Context context, AuthListener listener) {
         this.listener = listener;
+        this.context = context;
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
@@ -124,6 +129,14 @@ public class Authentication {
         });
     }
 
+    public void logout() {
+        auth.signOut();
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+        ((Activity) context).overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        ((Activity) context).finishAffinity();
+    }
+
     public boolean isUserLoggedIn() {
         return user != null;
     }
@@ -132,39 +145,37 @@ public class Authentication {
 
         // NAVIGATE TO SPECIFIC USER BY HIS UID AND GET DATA
 
-        database.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        database.collection("users").whereEqualTo("uid", user.getUid()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    if (document.getString("uid").equals(user.getUid())) {
-                        userData = new User();
-                        userData.setUid(document.getString("uid"));
-                        userData.setUsername(document.getString("username"));
-                        userData.setEmail(document.getString("email"));
-                        userData.setDescription(document.getString("description"));
-                        userData.setBanReason(document.getString("banReason"));
-                        userData.setAvatarUrl(document.getString("avatarUrl"));
-                        userData.setYoutubeUrl(document.getString("youtubeUrl"));
-                        userData.setSpotifyUrl(document.getString("spotifyUrl"));
-                        userData.setSoundcloudUrl(document.getString("soundcloudUrl"));
-                        userData.setTwitterUrl(document.getString("twitterUrl"));
-                        userData.setUserAge(Integer.parseInt(document.get("userAge").toString()));
-                        userData.setBanned(Boolean.parseBoolean(document.get("isBanned").toString()));
-                        userData.setOnline(Boolean.parseBoolean(document.get("isOnline").toString()));
-                        userData.setOnlineVisible(Boolean.parseBoolean(document.get("isOnlineVisible").toString()));
-                        userData.setLastOnlineDate(Long.parseLong(document.get("lastOnlineDate").toString()));
-                        userData.setUserBirthDay(Long.parseLong(document.get("userBirthDay").toString()));
-                        userData.setAccountCreatedDate(Long.parseLong(document.get("userAccountCreatedDate").toString()));
+                    userData = new User();
+                    userData.setUid(document.getString("uid"));
+                    userData.setUsername(document.getString("username"));
+                    userData.setEmail(document.getString("email"));
+                    userData.setDescription(document.getString("description"));
+                    userData.setBanReason(document.getString("banReason"));
+                    userData.setAvatarUrl(document.getString("avatarUrl"));
+                    userData.setYoutubeUrl(document.getString("youtubeUrl"));
+                    userData.setSpotifyUrl(document.getString("spotifyUrl"));
+                    userData.setSoundcloudUrl(document.getString("soundcloudUrl"));
+                    userData.setTwitterUrl(document.getString("twitterUrl"));
+                    userData.setUserAge(Integer.parseInt(document.get("userAge").toString()));
+                    userData.setBanned(Boolean.parseBoolean(document.get("isBanned").toString()));
+                    userData.setOnline(Boolean.parseBoolean(document.get("isOnline").toString()));
+                    userData.setOnlineVisible(Boolean.parseBoolean(document.get("isOnlineVisible").toString()));
+                    userData.setLastOnlineDate(Long.parseLong(document.get("lastOnlineDate").toString()));
+                    userData.setUserBirthDay(Long.parseLong(document.get("userBirthDay").toString()));
+                    userData.setAccountCreatedDate(Long.parseLong(document.get("userAccountCreatedDate").toString()));
 
-                        if (isLogin) {
-                            listener.OnUserLogin(userData);
-                        } else if (isRegister) {
-                            listener.OnUserRegister(userData);
-                        } else if (userRequest) {
-                            listener.OnUserRequestData(userData);
-                        } else if (userAlreadyLogged) {
-                            listener.OnUserAlreadyLoggedIn(userData);
-                        }
+                    if (isLogin) {
+                        listener.OnUserLogin(userData);
+                    } else if (isRegister) {
+                        listener.OnUserRegister(userData);
+                    } else if (userRequest) {
+                        listener.OnUserRequestData(userData);
+                    } else if (userAlreadyLogged) {
+                        listener.OnUserAlreadyLoggedIn(userData);
                     }
                 }
             }

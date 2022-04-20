@@ -1,5 +1,6 @@
 package tw.musbea;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -167,6 +168,13 @@ public class HomeActivity extends AppCompatActivity {
             tabLayout.getTabAt(2).select();
             viewPager.setCurrentItem(2);
             drawerLayout.setSubtitle("Profile");
+        });
+
+        drawer_add_friend_bttn.setOnClickListener(v -> {
+            drawerLayout.setDrawerOpen(false, false);
+            Intent intent = new Intent(HomeActivity.this, AddFriendActivity.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
         });
     }
 }

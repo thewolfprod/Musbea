@@ -68,6 +68,10 @@ public class AccountConfigurationActivity extends AppCompatActivity {
     }
 
     void setup() {
+        if (getIntent().hasExtra("skipButton")) {
+            back_bttn.setText("Cancel");
+        }
+
         next_bttn.setOnClickListener(v -> {
             nextPage();
         });
@@ -131,15 +135,24 @@ public class AccountConfigurationActivity extends AppCompatActivity {
             viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
             validate();
         } else if (viewPager.getCurrentItem() == 0) {
-            Intent intent = new Intent(AccountConfigurationActivity.this, HomeActivity.class);
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            finish();
+            if (!getIntent().hasExtra("skipButton")) {
+                Intent intent = new Intent(AccountConfigurationActivity.this, HomeActivity.class);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                finish();
+            } else {
+                finish();
+            }
         }
     }
 
     void validate() {
         if (viewPager.getCurrentItem() == 0) {
-            back_bttn.setText("Skip");
+            if (getIntent().hasExtra("skipButton")) {
+                back_bttn.setText("Cancel");
+            } else {
+                back_bttn.setText("Skip");
+            }
         } else {
             back_bttn.setText("Back");
         }
